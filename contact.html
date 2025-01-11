@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Contact Us - Treynex Aerospace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Orbitron&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Share+Tech&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- Google Fonts Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Custom Styles -->
+  <style>
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: black; /* Set background to black */
+    }
+
+    .orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .thasadith {
+      font-family: 'Thasadith', sans-serif;
+    }
+
+    .roboto-condensed {
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    /* Navigation Bar Styles */
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 8px; /* Reduced margin between items */
+    }
+
+    nav ul li a {
+      position: relative;
+      display: block;
+      text-transform: uppercase;
+      margin: 10px 0; /* Reduced margin */
+      padding: 8px 16px; /* Reduced padding */
+      text-decoration: none;
+      color: #262626;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 14px; /* Reduced font size */
+      font-weight: 600;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      z-index: 1;
+      border-radius: 4px; /* Slightly curved corners */
+    }
+
+    nav ul li a:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-top: 2px solid #262626;
+      border-bottom: 2px solid #262626;
+      transform: scaleY(2);
+      opacity: 0;
+      transition: .3s;
+      border-radius: 4px; /* Slightly curved corners */
+    }
+
+    nav ul li a:after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #262626; /* Black color */
+      transform: scale(0);
+      opacity: 0;
+      transition: .3s;
+      z-index: -1;
+      border-radius: 4px; /* Slightly curved corners */
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+    }
+
+    nav ul li a:hover:before {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    nav ul li a:hover:after {
+      background-color: #000; /* Black color on hover */
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+
+    .hamburger .line {
+      width: 25px;
+      height: 3px;
+      background-color: #262626;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        z-index: 1000;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-50 flex items-center justify-between p-3 bg-white"> <!-- Sticky navigation bar -->
+    <div class="flex items-center space-x-2">
+      <span class="text-xl font-bold text-black orbitron uppercase">treynex</span> <!-- Replaced logo with "treynex" -->
+    </div>
+    <nav>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul>
+        <li><a href="web.html">HOME</a></li>
+        <li><a href="projects.html">PROJECTS</a></li>
+        <li><a href="mission.html">MISSION</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contact Us Hero Section -->
+  <section class="relative bg-black h-screen flex items-center justify-center">
+    <!-- Centered Content -->
+    <div class="text-center">
+      <h1 class="text-6xl md:text-8xl font-bold orbitron">CONTACT US</h1>
+    </div>
+  </section>
+
+  <!-- Contact Us Section -->
+  <section class="py-16 px-8 bg-black">
+    <div class="container mx-auto">
+      <h2 class="text-4xl font-bold orbitron text-center mb-8">Get in Touch with Us</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Contact Form -->
+        <div class="bg-black p-8 rounded-lg border border-white">
+          <form>
+            <div class="mb-4">
+              <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+              <input type="text" id="name" name="name" class="mt-1 p-2 w-full bg-black text-white border border-white rounded" required>
+            </div>
+            <div class="mb-4">
+              <label for="email" class="block text-sm font-medium text-gray-300">Email Address</label>
+              <input type="email" id="email" name="email" class="mt-1 p-2 w-full bg-black text-white border border-white rounded" required>
+            </div>
+            <div class="mb-4">
+              <label for="subject" class="block text-sm font-medium text-gray-300">Subject</label>
+              <input type="text" id="subject" name="subject" class="mt-1 p-2 w-full bg-black text-white border border-white rounded" required>
+            </div>
+            <div class="mb-4">
+              <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+              <textarea id="message" name="message" rows="5" class="mt-1 p-2 w-full bg-black text-white border border-white rounded" required></textarea>
+            </div>
+            <button type="submit" class="bg-white text-black px-6 py-2 rounded hover:bg-gray-200 transition">Submit</button>
+          </form>
+        </div>
+        <!-- Contact Details -->
+        <div class="bg-black p-8 rounded-lg border border-white">
+          <h3 class="text-2xl font-bold orbitron mb-4">Contact Details</h3>
+          <p class="text-gray-300 mb-4">We’d love to hear from you! Whether you have questions, feedback, or inquiries about our space technology, we’re here to help.</p>
+          <ul class="space-y-4">
+            <li class="text-gray-300"><strong>Email:</strong> info@treynex.com</li>
+            <li class="text-gray-300"><strong>Phone:</strong> +254 706 519 431 (Kenya)</li>
+            <li class="text-gray-300"><strong>Address:</strong> Treynex Aerospace, Kiambu, Kenya</li>
+            <li class="text-gray-300"><strong>Operating Hours:</strong> Monday - Friday, 9:00 AM - 5:00 PM (EAT)</li>
+          </ul>
+          <div class="mt-6 flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <!-- Left Side: Company Details -->
+      <div class="mb-4 md:mb-0">
+        <p class="text-lg font-bold">Treynex Aerospace</p>
+        <p class="text-sm">Nairobi, Kenya</p>
+        <p class="text-sm">Email: info@treynex.com</p>
+        <p class="text-sm">Phone: +254 700 000 000</p>
+      </div>
+      <!-- Middle: Social Media Handles -->
+      <div class="flex space-x-4 mb-4 md:mb-0">
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+      <!-- Right Side: All Rights Reserved -->
+      <div>
+        <p class="text-sm text-gray-400">&copy; 2025 Treynex. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Hamburger Menu Toggle -->
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('nav ul');
+      nav.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

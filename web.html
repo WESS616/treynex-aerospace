@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Treynex Aerospace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <!-- AOS (Animate On Scroll) Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Orbitron&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Share+Tech&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- Google Fonts Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Custom Styles -->
+  <style>
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+    }
+
+    .orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .thasadith {
+      font-family: 'Thasadith', sans-serif;
+    }
+
+    .roboto-condensed {
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    /* Navigation Bar Styles */
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 8px; /* Reduced margin between items */
+    }
+
+    nav ul li a {
+      position: relative;
+      display: block;
+      text-transform: uppercase;
+      margin: 10px 0; /* Reduced margin */
+      padding: 8px 16px; /* Reduced padding */
+      text-decoration: none;
+      color: #262626;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 14px; /* Reduced font size */
+      font-weight: 600;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      z-index: 1;
+      border-radius: 4px; /* Slightly curved corners */
+    }
+
+    nav ul li a:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-top: 2px solid #262626;
+      border-bottom: 2px solid #262626;
+      transform: scaleY(2);
+      opacity: 0;
+      transition: .3s;
+      border-radius: 4px; /* Slightly curved corners */
+    }
+
+    nav ul li a:after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #262626; /* Black color */
+      transform: scale(0);
+      opacity: 0;
+      transition: .3s;
+      z-index: -1;
+      border-radius: 4px; /* Slightly curved corners */
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+    }
+
+    nav ul li a:hover:before {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    nav ul li a:hover:after {
+      background-color: #000; /* Black color on hover */
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    /* Button Styles */
+    .fancy {
+      background-color: transparent;
+      border: 2px solid #fff;
+      border-radius: 0;
+      box-sizing: border-box;
+      color: #000;
+      cursor: pointer;
+      display: inline-block;
+      float: right;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin: 20px 0 0 0; /* Pushed the button down slightly */
+      outline: none;
+      overflow: visible;
+      padding: 1.25em 2em;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      text-transform: none;
+      transition: all 0.3s ease-in-out;
+      user-select: none;
+      font-size: 13px;
+    }
+
+    .fancy::before {
+      content: " ";
+      width: 1.5625rem;
+      height: 2px;
+      background: white;
+      top: 50%;
+      left: 1.5em;
+      position: absolute;
+      transform: translateY(-50%);
+      transform-origin: center;
+      transition: background 0.3s linear, width 0.3s linear;
+    }
+
+    .fancy .text {
+      font-size: 1.125em;
+      line-height: 1.33333em;
+      padding-left: 2em;
+      display: block;
+      text-align: left;
+      transition: all 0.3s ease-in-out;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: white;
+    }
+
+    .fancy .top-key {
+      height: 2px;
+      width: 1.5625rem;
+      top: -2px;
+      left: 0.625rem;
+      position: absolute;
+      background: #212121;
+      transition: width 0.5s ease-out, left 0.3s ease-out;
+    }
+
+    .fancy .bottom-key-1 {
+      height: 2px;
+      width: 1.5625rem;
+      right: 1.875rem;
+      bottom: -2px;
+      position: absolute;
+      background: #212121;
+      transition: width 0.5s ease-out, right 0.3s ease-out;
+    }
+
+    .fancy .bottom-key-2 {
+      height: 2px;
+      width: 0.625rem;
+      right: 0.625rem;
+      bottom: -2px;
+      position: absolute;
+      background: #212121;
+      transition: width 0.5s ease-out, right 0.3s ease-out;
+    }
+
+    .fancy:hover {
+      color: white;
+      background: white;
+    }
+
+    .fancy:hover::before {
+      width: 0.9375rem;
+      background: black;
+    }
+
+    .fancy:hover .text {
+      color: black;
+      padding-left: 1.5em;
+    }
+
+    .fancy:hover .top-key {
+      left: -2px;
+      width: 0px;
+    }
+
+    .fancy:hover .bottom-key-1,
+    .fancy:hover .bottom-key-2 {
+      right: 0;
+      width: 0;
+    }
+
+    /* Mirror Shadow Effect for Info Cards */
+    .info-card {
+      background: white; /* Changed background to white */
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1), 0 -10px 20px rgba(0, 0, 0, 0.1); /* Mirror shadow effect */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .info-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2), 0 -15px 30px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    }
+
+    .info-card h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: black; /* Changed text color to black */
+    }
+
+    .info-card p {
+      font-size: 1rem;
+      color: rgba(0, 0, 0, 0.7); /* Changed text color to dark gray */
+      margin-bottom: 16px;
+    }
+
+    .info-card a {
+      color: #63A4FF;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .info-card a:hover {
+      color: #83EAF1;
+    }
+
+    /* From Uiverse.io by alexmaracinaru */
+    .cta {
+      border: none;
+      background: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    .cta span {
+      padding-bottom: 7px;
+      letter-spacing: 4px;
+      font-size: 14px;
+      padding-left: 15px; /* Adjusted padding to the left */
+      text-transform: uppercase;
+    }
+
+    .cta svg {
+      transform: translateX(-8px);
+      transition: all 0.3s ease;
+    }
+
+    .cta:hover svg {
+      transform: translateX(0);
+    }
+
+    .cta:active svg {
+      transform: scale(0.9);
+    }
+
+    .hover-underline-animation {
+      position: relative;
+      color: black;
+      padding-bottom: 20px;
+    }
+
+    .hover-underline-animation:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background-color: #000000;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+
+    .cta:hover .hover-underline-animation:after {
+      transform: scaleX(1);
+      transform-origin: bottom left;
+    }
+
+    /* Scroll Down Arrow */
+    .scroll-down {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 50px;
+      border: 2px solid white;
+      border-radius: 50px;
+      cursor: pointer;
+    }
+
+    .scroll-down::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      margin-left: -3px;
+      background-color: white;
+      border-radius: 100%;
+      animation: scroll-down 1.5s infinite;
+    }
+
+    @keyframes scroll-down {
+      0% {
+        transform: translateY(0);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+
+    .hamburger .line {
+      width: 25px;
+      height: 3px;
+      background-color: #262626;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        z-index: 1000;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+    }
+
+    /* From Uiverse.io by cssbuttons-io */
+    button {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      outline: none;
+      border: 0;
+      vertical-align: middle;
+      text-decoration: none;
+      background: transparent;
+      padding: 0;
+      font-size: inherit;
+      font-family: inherit;
+    }
+
+    button.learn-more {
+      width: 12rem;
+      height: auto;
+    }
+
+    button.learn-more .circle {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: relative;
+      display: block;
+      margin: 0;
+      width: 3rem;
+      height: 3rem;
+      background: #282936;
+      border-radius: 1.625rem;
+    }
+
+    button.learn-more .circle .icon {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      background: #fff;
+    }
+
+    button.learn-more .circle .icon.arrow {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      left: 0.625rem;
+      width: 1.125rem;
+      height: 0.125rem;
+      background: none;
+    }
+
+    button.learn-more .circle .icon.arrow::before {
+      position: absolute;
+      content: "";
+      top: -0.29rem;
+      right: 0.0625rem;
+      width: 0.625rem;
+      height: 0.625rem;
+      border-top: 0.125rem solid #fff;
+      border-right: 0.125rem solid #fff;
+      transform: rotate(45deg);
+    }
+
+    button.learn-more .button-text {
+      transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 0.75rem 0;
+      margin: 0 0 0 1.85rem;
+      color: #282936;
+      font-weight: 700;
+      line-height: 1.6;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    button:hover .circle {
+      width: 100%;
+    }
+
+    button:hover .circle .icon.arrow {
+      background: #fff;
+      transform: translate(1rem, 0);
+    }
+
+    button:hover .button-text {
+      color: #fff;
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-50 flex items-center justify-between p-3 bg-white"> <!-- Sticky navigation bar -->
+    <div class="flex items-center space-x-2">
+      <span class="text-xl font-bold text-black orbitron uppercase">treynex</span> <!-- Replaced logo with "treynex" -->
+    </div>
+    <nav>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="mission.html">MISSION</a></li>
+        <li><a href="about.html">ABOUT US</a></li>
+        <li><a href="blog.html">BLOG</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <main class="relative">
+    <!-- Background Image -->
+    <img src="taleno.jpg" alt="Background Image" class="w-full h-screen object-cover">
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-50"></div> <!-- Semi-transparent dark overlay -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8" data-aos="fade-up"> <!-- Centered content -->
+      <h1 class="text-4xl md:text-5xl font-normal orbitron"> <!-- Reduced font size -->
+        Unlocking Africa's Potential Beyond Earth.
+      </h1>
+      <p class="mt-4 text-xl md:text-2xl thasadith"> <!-- Reduced font size and applied Thasadith font -->
+        Using Innovative, Low-Cost Rocket Launch Solutions and Satellite Technologies to solve some of Africa's challenges.
+      </p>
+      <!-- Updated Button -->
+      <a class="fancy" href="mission.html">
+        <span class="top-key"></span>
+        <span class="text">Learn More</span> <!-- Changed text to "Learn More" -->
+        <span class="bottom-key-1"></span>
+        <span class="bottom-key-2"></span>
+      </a>
+      <!-- Scroll Down Indicator -->
+      <div class="scroll-down"></div>
+    </div>
+  </main>
+
+  <!-- WHO ARE WE Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 orbitron text-black" data-aos="fade-up">WHO ARE WE?</h2>
+      <div class="max-w-3xl mx-auto text-left"> <!-- Left-aligned text -->
+        <p class="text-xl md:text-2xl thasadith text-gray-700" data-aos="fade-up" data-aos-delay="100">
+          Treynex is a Kenyan aerospace manufacturer and suborbital spaceflight company. We focus on developing and launching rockets. Treynex Aerospace's main mission is to design, develop, and manufacture high-performance launch vehicles and satellite systems that are reliable and cost-effective.
+        </p>
+        <!-- About Us Button -->
+        <a href="about.html" class="cta mt-8">
+          <svg
+            id="arrow-horizontal"
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="10"
+            viewBox="0 0 46 16"
+          >
+            <path
+              id="Path_10"
+              data-name="Path 10"
+              d="M8,0,6.545,1.455l5.506,5.506H-30V9.039H12.052L6.545,14.545,8,16l8-8Z"
+              transform="translate(30)"
+            ></path>
+          </svg>
+          <span class="hover-underline-animation">About Us</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR MAIN FOCUS Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 orbitron text-black" data-aos="fade-up">OUR MAIN FOCUS</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 1: Rocket Development -->
+        <div class="info-card" data-aos="fade-left" data-aos-delay="100">
+          <i class="material-icons text-6xl text-center w-full mb-4 text-black">rocket_launch</i> <!-- Rocket icon -->
+          <h3 class="text-black text-center orbitron">Rocket Development</h3>
+          <p class="text-gray-700 text-center thasadith">
+            We specialize in designing and building advanced rockets, including hybrid engines, to deliver payloads to various orbits, with a focus on performance and reliability.
+          </p>
+        </div>
+        <!-- Card 2: Satellite Manufacturing -->
+        <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="material-icons text-6xl text-center w-full mb-4 text-black">satellite_alt</i> <!-- Satellite Alt icon -->
+          <h3 class="text-black text-center orbitron">Satellite Manufacturing</h3>
+          <p class="text-gray-700 text-center thasadith">
+            Treynex is dedicated to the creation and deployment of satellites for communication, Earth observation, and research, with a strong emphasis on locally-built satellites in Kenya.
+          </p>
+        </div>
+        <!-- Card 3: Launch Services -->
+        <div class="info-card" data-aos="fade-right" data-aos-delay="300">
+          <i class="material-icons text-6xl text-center w-full mb-4 text-black">rocket</i> <!-- Rocket icon -->
+          <h3 class="text-black text-center orbitron">Launch Services</h3>
+          <p class="text-gray-700 text-center thasadith">
+            We provide cost-effective and reliable launch solutions, ensuring payloads reach their intended orbits efficiently and safely, supporting various sectors worldwide.
+          </p>
+        </div>
+        <!-- Card 4: Innovation in Aerospace Technology -->
+        <div class="info-card" data-aos="zoom-in" data-aos-delay="400">
+          <i class="material-icons text-6xl text-center w-full mb-4 text-black">lightbulb</i> <!-- Light bulb icon -->
+          <h3 class="text-black text-center orbitron">Innovation in Aerospace Technology</h3>
+          <p class="text-gray-700 text-center thasadith">
+            Leveraging AI, robotics, 3D printing, and advanced materials, we continuously innovate to stay at the forefront of aerospace technology.
+          </p>
+        </div>
+        <!-- Card 5: Global and Local Collaborations -->
+        <div class="info-card" data-aos="flip-up" data-aos-delay="500">
+          <i class="material-icons text-6xl text-center w-full mb-4 text-black">handshake</i> <!-- Handshake icon -->
+          <h3 class="text-black text-center orbitron">Global and Local Collaborations</h3>
+          <p class="text-gray-700 text-center thasadith">
+            We establish strategic partnerships with international space agencies and foster local expertise, bridging the gap between global knowledge and local talent.
+          </p>
+        </div>
+        <!-- Card 6: Space Exploration and Research -->
+        <div class="info-card" data-aos="fade-down" data-aos-delay="600">
+          <i class="material-icons text-6xl text-center w-full mb-4 text-black">travel_explore</i> <!-- Telescope icon -->
+          <h3 class="text-black text-center orbitron">Space Exploration and Research</h3>
+          <p class="text-gray-700 text-center thasadith">
+            Our research initiatives aim to expand humanity's understanding of space, focusing on sustainable and innovative exploration methods for future missions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE VALUES Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 orbitron text-black" data-aos="fade-up">CORE VALUES</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Card 1: Innovative Simplicity -->
+        <div class="info-card" data-aos="fade-left" data-aos-delay="100">
+          <i class="material-icons text-6xl text-center w-full mb-4 text-black">emoji_objects</i> <!-- Light bulb icon -->
+          <h3 class="text-black text-center orbitron">Innovative Simplicity</h3>
+          <p class="text-gray-700 text-center thasadith">
+            We believe in innovative solutions that are simple, efficient, and effective, making space exploration more accessible and impactful.
+          </p>
+        </div>
+        <!-- Card 2: Precision and Excellence -->
+        <div class="info-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="material-icons text-6xl text-center w-full mb-4 text-black">verified_user</i> <!-- Verified user icon -->
+          <h3 class="text-black text-center orbitron">Precision and Excellence</h3>
+          <p class="text-gray-700 text-center thasadith">
+            Every project is driven by our commitment to precision and excellence, ensuring top-quality results in all our ventures.
+          </p>
+        </div>
+        <!-- Card 3: Relentless Commitment -->
+        <div class="info-card" data-aos="fade-right" data-aos-delay="300">
+          <i class="material-icons text-6xl text-center w-full mb-4 text-black">engineering</i> <!-- Engineering icon -->
+          <h3 class="text-black text-center orbitron">Relentless Commitment</h3>
+          <p class="text-gray-700 text-center thasadith">
+            We are unwavering in our dedication to pushing boundaries and overcoming challenges to advance Africa's role in space exploration.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR MISSION Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 orbitron text-black" data-aos="fade-right">OUR MISSION</h2>
+        <p class="text-xl md:text-2xl thasadith text-gray-700" data-aos="fade-right" data-aos-delay="100">
+          Treynex Aerospace is set to commit itself to revolutionizing space exploration by leveraging Kenya’s strategic equatorial location to develop and launch cost-effective, reusable rockets. It will aim at building and developing advanced satellites that contribute to monitoring and collecting useful information that will help in solving critical challenges in Africa, from agriculture to climate change and communication. By utilizing locally sourced materials and innovative, affordable production methods, we are dedicated to drastically reduce the costs of space missions, making space technology accessible and of benefit to Africa's development and sustainability.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR VISION Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-right">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8 orbitron text-black" data-aos="fade-left">OUR VISION</h2>
+        <p class="text-xl md:text-2xl thasadith text-gray-700" data-aos="fade-left" data-aos-delay="100">
+          Our vision at Treynex Aerospace is to lead the continent into a new space age, where it will become a central player in the global space exploration, making it grab a share of the market. We envision a future where Kenya's strategic location at the equatorial region is fully leveraged for the most efficient and cost-effective satellite launches, making the country a hub for space activities on the continent. We strive to innovate in launch vehicle reusability, cutting down the the costs of space missions, and to contribute to Africa's growth by using space technology to solve local problems, driving economic development, and position Africa as a key player in the global space industry.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Be Part of Our Space Journey Section -->
+  <section class="py-16 bg-white">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+      <!-- Left Side: Company Logo Space Image -->
+      <div class="w-full md:w-1/2 flex justify-center" data-aos="fade-right">
+        <img src="lls.png" alt="Company Logo Space Image" class="w-3/4 rounded-lg shadow-lg">
+      </div>
+      <!-- Right Side: Heading and Description -->
+      <div class="w-full md:w-1/2 mt-8 md:mt-0 md:pl-8" data-aos="fade-left">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4 orbitron text-black">Be Part of Our Space Journey</h2>
+        <p class="text-xl md:text-2xl thasadith text-gray-700 mb-8">
+          Join us in shaping the future of space exploration, where innovation meets opportunity.
+        </p>
+        <!-- Get Involved Button -->
+        <a href="contact.html" class="learn-more">
+          <span class="circle" aria-hidden="true">
+            <span class="icon arrow"></span>
+          </span>
+          <span class="button-text">Get Involved</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <!-- Left Side: Company Details -->
+      <div class="mb-4 md:mb-0">
+        <p class="text-lg font-bold">Treynex Aerospace</p>
+        <p class="text-sm">Kiambu, Kenya</p>
+        <p class="text-sm">Email: info@treynex.com</p>
+        <p class="text-sm">Phone: +254 706519431</p>
+      </div>
+      <!-- Middle: Social Media Handles -->
+      <div class="flex space-x-4 mb-4 md:mb-0">
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+      <!-- Right Side: All Rights Reserved -->
+      <div>
+        <p class="text-sm text-gray-400">&copy; 2025 Treynex. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Initialize AOS -->
+  <script>
+    AOS.init({
+      duration: 1000, // Animation duration
+      once: true, // Whether animation should happen only once
+    });
+
+    // Hamburger Menu Toggle
+    function toggleMenu() {
+      const nav = document.querySelector('nav ul');
+      nav.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>

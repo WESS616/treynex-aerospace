@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Blog - Treynex Aerospace</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&family=Orbitron&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Share+Tech&family=Thasadith:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <!-- Google Fonts Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Custom Styles -->
+  <style>
+    * {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: sans-serif;
+      background-color: black; /* Set background to black */
+    }
+
+    .orbitron {
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    .thasadith {
+      font-family: 'Thasadith', sans-serif;
+    }
+
+    .roboto-condensed {
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    /* Navigation Bar Styles */
+    nav ul {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0 8px; /* Reduced margin between items */
+    }
+
+    nav ul li a {
+      position: relative;
+      display: block;
+      text-transform: uppercase;
+      margin: 10px 0; /* Reduced margin */
+      padding: 8px 16px; /* Reduced padding */
+      text-decoration: none;
+      color: #262626;
+      font-family: 'Roboto Condensed', sans-serif;
+      font-size: 14px; /* Reduced font size */
+      font-weight: 600;
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+      z-index: 1;
+      border-radius: 4px; /* Slightly curved corners */
+    }
+
+    nav ul li a:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-top: 2px solid #262626;
+      border-bottom: 2px solid #262626;
+      transform: scaleY(2);
+      opacity: 0;
+      transition: .3s;
+      border-radius: 4px; /* Slightly curved corners */
+    }
+
+    nav ul li a:after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #262626; /* Black color */
+      transform: scale(0);
+      opacity: 0;
+      transition: .3s;
+      z-index: -1;
+      border-radius: 4px; /* Slightly curved corners */
+    }
+
+    nav ul li a:hover {
+      color: #fff;
+    }
+
+    nav ul li a:hover:before {
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    nav ul li a:hover:after {
+      background-color: #000; /* Black color on hover */
+      transform: scaleY(1);
+      opacity: 1;
+    }
+
+    /* Hamburger Menu */
+    .hamburger {
+      display: none;
+      cursor: pointer;
+    }
+
+    .hamburger .line {
+      width: 25px;
+      height: 3px;
+      background-color: #262626;
+      margin: 5px;
+      transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: white;
+        width: 100%;
+        text-align: center;
+        z-index: 1000;
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+    }
+
+    /* Blog Content Section */
+    .blog-content {
+      padding: 50px 20px;
+      background-color: black;
+      color: white;
+    }
+
+    .blog-content h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .blog-content p {
+      font-size: 1.125rem;
+      line-height: 1.75;
+      margin-bottom: 30px;
+      color: #ddd;
+    }
+
+    /* Scroll Down Button */
+    .scroll-down-arrow {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: white;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+  </style>
+</head>
+<body class="bg-black text-white">
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-50 flex items-center justify-between p-3 bg-white"> <!-- Sticky navigation bar -->
+    <div class="flex items-center space-x-2">
+      <span class="text-xl font-bold text-black orbitron uppercase">treynex</span> <!-- Replaced logo with "treynex" -->
+    </div>
+    <nav>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+      <ul>
+        <li><a href="web.html">HOME</a></li>
+        <li><a href="projects.html">PROJECTS</a></li>
+        <li><a href="mission.html">MISSION</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT US</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Blog Hero Section -->
+  <section class="relative">
+    <!-- Background Image -->
+    <img src="projects.jpg" alt="Blog Background" class="w-full h-screen object-cover">
+    <!-- Dark Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-70"></div> <!-- Darker overlay -->
+    <!-- Centered Content -->
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8">
+      <h1 class="text-6xl md:text-8xl font-bold orbitron">BLOG</h1>
+      <!-- Scroll Down Button -->
+      <div class="scroll-down-arrow">
+        <i class="fas fa-chevron-down"></i>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Content Section -->
+  <section class="blog-content">
+    <div class="container mx-auto px-4">
+      <!-- Blog Post 1 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">The Future of Space Exploration in Africa</h2>
+        <p class="text-lg roboto-condensed">
+          With countries like Kenya, Nigeria, and South Africa advancing in areas such as satellite technology, space research, and policy development, Africa is slowly but surely becoming a player in space exploration. Much potential remains untapped in as far as space exploration is concerned in Africa. Treynex is leading this change in ensuring innovation and space industry growth in Africa. Treynex focuses on the development of rockets, satellites, and spaceport infrastructures to develop the regional space agenda. The company develops the new frontier for space exploration on the African continent using AI, robotics, and eco-friendly technology, enabling new opportunities for regional talent while supporting the advancement of global standing for the region in the space industry.
+        </p>
+      </div>
+
+      <!-- Blog Post 2 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">Back to Basics: Anga Launch System in Making</h2>
+        <p class="text-lg roboto-condensed">
+          The development of a rocket is not small, and the process of building ALS-1 has been quite complex but exciting. From conceptualization to the development team at Treynex, tireless engineering was required to develop a two-stage rocket able to reach space. The selection of the open-cycle Thermon engine on ALS-1 was very much a deliberate one in an effort to optimize performance while reducing costs. Treynex is taking on many engineering challenges with a mix of traditional rocket engineering and modern technologies, including AI-driven design and 3D printing. We're ensuring precision in every part-from structural components to the integration of the rocket's sophisticated systems-by integrating robotic arms into the manufacturing process. The timeline for the development of ALS-1 is two years, with the maiden flight scheduled for late 2027, marking a major milestone in Africa's space capabilities.
+        </p>
+      </div>
+
+      <!-- Blog Post 3 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">The Role of AI in Space Technology</h2>
+        <p class="text-lg roboto-condensed">
+          AI is now making it possible to do things in space that were hitherto unimaginable. AI allows for intelligent decision-making, faster testing, and the running of better simulations, which together make space missions far safer and more efficient than was ever conceived. At Treynex, AI runs deep into the design, simulation, and operational processes of our rockets. AI is helping us to simulate flight trajectories, predict engine behavior, and optimize rocket structures. It also contributes much to automating manufacturing processes, such as designing parts and checks on systems for more efficient production. Looking ahead to the launch of the ALS-1, AI will help refine its systems to ensure the rocket is efficient and reliable while reducing human error in test and operations.
+        </p>
+      </div>
+
+      <!-- Blog Post 4 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">Space Sustainability: Eco-Friendly Materials for Construction</h2>
+        <p class="text-lg roboto-condensed">
+          Sustainability has become the keyword in all industries, and space is no exception. While building rockets and satellites, Treynex is committed to using eco-friendly materials and lessening the impact of its operations on the environment. Carbon composites are a critical part of our rocket design studies due to their light yet strong properties compared to traditional materials such as aluminum. This choice not only improves the performance of the rocket but also reduces its environmental footprint. Furthermore, with 3D printing, the manufacturing of parts has become much less wasteful and quicker. Moving forward, Treynex is also working toward reusability in rocket components, which will further reduce the need for new resources and minimize waste in space exploration.
+        </p>
+      </div>
+
+      <!-- Blog Post 5 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">Space Launch Sites in Kenya: Opportunities and Challenges</h2>
+        <p class="text-lg roboto-condensed">
+          Kenya's geographical location near the equator makes it an ideal location for space launches, as rockets launched from near the equator benefit from the Earth's rotational speed, saving fuel and increasing efficiency. Located on the Kenyan Coast, Broglio Space Port already acts as a base for satellite launches; with more investment in infrastructure, it could turn out to be one of the important bases for space missions both on the African continent and worldwide. Some of the obstacles to such developments are land acquisition, governmental regulations, environmental concerns, and communal acceptance of such facilities. Treynex is willing to cooperate with local and national governments in developing state-of-the-art launch facilities, which could serve the emerging African space industry. Such a launch site will be used by our missions, while it will also be opened for other African nations for launching their satellites and rockets and putting Africa as one of the main players in space exploration in the world.
+        </p>
+      </div>
+
+      <!-- Blog Post 6 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">How Kenya and Africa Can Lead the Way in Satellite Development</h2>
+        <p class="text-lg roboto-condensed">
+          Satellites are at the heart of modern space exploration, with applications ranging from communications and weather forecasting to environmental monitoring and defense. While many African nations have made strides in satellite development, there is still vast untapped potential for local satellite manufacturing. Treynex was therefore set up with the desire to make Africa a leading contributor in space technology through satellite design and construction that will answer to the specific needs of the African continent. By employing advanced technologies such as AI, 3D printing, and sustainable materials, we design satellites with the capability to help enhance communication networks, monitor agriculture, and track climate change in real-time. The collaboration of large-scale production of satellites with adequate infrastructure and expertise with African governments and universities is the way forward, and Treynex looks forward to being in the vanguard of such a future.
+        </p>
+      </div>
+
+      <!-- Blog Post 7 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">Space Industry Careers: Join Treynex's Vision</h2>
+        <p class="text-lg roboto-condensed">
+          At Treynex, we're currently growing and seeking out the enthusiasm of bright people who have the passion to join us in our exciting, now-changing world of space exploration. Working at Treynex means joining a team that will develop not only rockets and satellites but also set the future in space for Africa. As an engineer, project manager, or business developer, there are many career paths through which you can make valuable contributions to innovative projects in space at Treynex. We seek out those individuals who share their passion for technology, relish solving the most complex of problems, and rise to big challenges. With ongoing training and mentorship, our staff stay on the front lines of space technology developments. If you want to be part of a company that is changing the world, then Treynex is the place for you.
+        </p>
+      </div>
+
+      <!-- Blog Post 8 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">Key Technologies Driving the Space Revolution</h2>
+        <p class="text-lg roboto-condensed">
+          It's a revolution going on in space, with the advancement of technologies improving efficiency, performance, and cost-effectiveness in space. More powerful propulsion systems top the list of major advancements, which efficiently take rockets to space. Treynex investigates hybrid rocket engines in search of combining the benefits of both liquid and solid propellants, including open-cycle Thermon engines. Other key technologies include robotics, which plays a huge role in automating rocket assembly, maintenance, and even repair of space vehicles. AI is also revolutionizing space exploration through such means as real-time data analysis, predictive maintenance, and autonomous decision-making. The capability to 3D print rocket parts reduces waste and quickens the prototyping process, thus enabling faster iteration and innovation. These technologies are going to enable not only future space exploration but also further enhance the efficiency and reliability of missions like the ALS-1.
+        </p>
+      </div>
+
+      <!-- Blog Post 9 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">Treynex's Long-term Vision for Africa in Space</h2>
+        <p class="text-lg roboto-condensed">
+          Treynex is not a short-term dream; we build a long-term vision for the African space industry. It has to include not only high-success-rate repetitive launches into orbit and sophisticated satellites but also international partnerships, making Treynex dominant within the space business area of the African continent. Offering a consistent successful launch complex in the end: access to space for national interests throughout the continent and global customers. Our vision further includes devising a fleet of sophisticated rockets and satellites that can provide low-cost, high-performance services to governments, businesses, and scientific institutions. In addition, we can work together with African governments and universities to support the development of the needed infrastructure that will enable space missions and ensure that Africa is at the forefront of the future in space.
+        </p>
+      </div>
+
+      <!-- Blog Post 10 -->
+      <div class="mb-16">
+        <h2 class="text-4xl font-bold orbitron mb-6">Rocket Science Made Simple: Explaining the Basics of Rocket Propulsion</h2>
+        <p class="text-lg roboto-condensed">
+          Rocket propulsion is quite a complex subject, but its very basics need to be understood for space travel. The most basic concept behind rocket propulsion is to achieve thrust by overcoming the pull of gravity and launching the vehicle upwards in space. This occurs by controlled ignition of fuel inside the engine, due to which it produces a very high-pressure force that is exerted through a nozzle. First, there are liquid, solid, and hybrid engines. Treynex uses the hybrid engine in their ALS-1-an appropriate blend of advantages from both liquid and solid propellants for an efficient and powerful propulsion system. Propellants like LOX and ethanol provide the needed energy for launching, ensuring the rocket can reach its target altitude and trajectory. Simplifying intricate concepts in rocket science, Treynex desires to make space explorations more understandable and accessible to the public as a whole.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white py-8">
+    <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+      <!-- Left Side: Company Details -->
+      <div class="mb-4 md:mb-0">
+        <p class="text-lg font-bold">Treynex Aerospace</p>
+        <p class="text-sm">Nairobi, Kenya</p>
+        <p class="text-sm">Email: info@treynex.com</p>
+        <p class="text-sm">Phone: +254 700 000 000</p>
+      </div>
+      <!-- Middle: Social Media Handles -->
+      <div class="flex space-x-4 mb-4 md:mb-0">
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="#" class="text-gray-400 hover:text-white">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </div>
+      <!-- Right Side: All Rights Reserved -->
+      <div>
+        <p class="text-sm text-gray-400">&copy; 2025 Treynex. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Hamburger Menu Toggle -->
+  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('nav ul');
+      nav.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
